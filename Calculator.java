@@ -416,6 +416,11 @@ private boolean isResultDisplayed = false;
         else if(e.getSource()==equal){
         double result = 0;
         try {
+        
+        if (oldvalue == null || oldvalue.isEmpty() || oper.isEmpty()) {
+        isResultDisplayed = true;
+        return;
+        }
         newvalue = lb.getText();
         double b = Double.parseDouble(newvalue);
         double a = Double.parseDouble(oldvalue); 
