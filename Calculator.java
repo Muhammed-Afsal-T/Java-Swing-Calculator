@@ -102,7 +102,7 @@ private boolean isResultDisplayed = false;
 	two.addActionListener(this);
         fm.add(two);
       
-      three = new JButton("3");
+       three = new JButton("3");
 	three.setBounds(150,350,50,50);
 	three.setFont(fontbox);
 	three.addActionListener(this);
@@ -167,9 +167,9 @@ private boolean isResultDisplayed = false;
         fm.setVisible(true);
         }
         
-        
         public void actionPerformed(ActionEvent e){
-       if(e.getSource()==bnseven || e.getSource()==bneight || e.getSource()==bnnine || e.getSource()==four || e.getSource()==five || e.getSource()==six || e.getSource()==one || e.getSource()==two || e.getSource()==three || e.getSource()==dot  || e.getSource()==zero){
+       if(e.getSource()==bnseven || e.getSource()==bneight || e.getSource()==bnnine || e.getSource()==four || e.getSource()==five ||
+        e.getSource()==six || e.getSource()==one || e.getSource()==two || e.getSource()==three || e.getSource()==dot  || e.getSource()==zero){
        
        String digit = e.getActionCommand();
 
@@ -185,9 +185,9 @@ private boolean isResultDisplayed = false;
         
 
         newvalue = lb.getText(); 
-        float b = Float.parseFloat(newvalue);
-        float a = Float.parseFloat(oldvalue);
-        float result = 0f;
+        double b = Double.parseDouble(newvalue);
+        double a = Double.parseDouble(oldvalue);
+        double result = 0;
 
 
         switch (oper) {
@@ -229,15 +229,12 @@ private boolean isResultDisplayed = false;
          else if(e.getSource()==pluse){
          if (oldvalue != null && !oldvalue.isEmpty() && !lb.getText().isEmpty() && !oper.isEmpty()) {
         
-
         newvalue = lb.getText(); 
-        float b = Float.parseFloat(newvalue);
-        float a = Float.parseFloat(oldvalue);
-        float result = 0f;
-
+        double b = Double.parseDouble(newvalue);
+        double a = Double.parseDouble(oldvalue);
+        double result = 0;
 
         switch (oper) {
-        
         case "%":
         result = a % b;
         break;
@@ -275,17 +272,20 @@ private boolean isResultDisplayed = false;
         
         }
         else if(e.getSource()==minues){
-        if (oldvalue != null && !oldvalue.isEmpty() && !lb.getText().isEmpty() && !oper.isEmpty()) {
         
+        if (lb.getText().isEmpty() && (oldvalue == null || oldvalue.isEmpty())) {
+        lb.setText("-"); 
+        return; 
+        }
+        if (oldvalue != null && !oldvalue.isEmpty() && !lb.getText().isEmpty() && !oper.isEmpty()) {
 
         newvalue = lb.getText(); 
-        float b = Float.parseFloat(newvalue);
-        float a = Float.parseFloat(oldvalue);
-        float result = 0f;
+        double b = Double.parseDouble(newvalue);
+        double a = Double.parseDouble(oldvalue);
+        double result = 0;
 
 
-        switch (oper) {
-        
+        switch (oper) {        
         case "%":
         result = a % b;
         break;
@@ -325,13 +325,12 @@ private boolean isResultDisplayed = false;
         
 
         newvalue = lb.getText(); 
-        float b = Float.parseFloat(newvalue);
-        float a = Float.parseFloat(oldvalue);
-        float result = 0f;
+        double b = Double.parseDouble(newvalue);
+        double a = Double.parseDouble(oldvalue);
+        double result = 0;
 
 
-        switch (oper) {
-        
+        switch (oper) {       
         case "%":
         result = a % b;
         break;
@@ -371,13 +370,12 @@ private boolean isResultDisplayed = false;
         
 
         newvalue = lb.getText(); 
-        float b = Float.parseFloat(newvalue);
-        float a = Float.parseFloat(oldvalue);
-        float result = 0f;
+        double b = Double.parseDouble(newvalue);
+        double a = Double.parseDouble(oldvalue);
+        double result = 0;
 
 
-        switch (oper) {
-        
+        switch (oper) {       
         case "%":
         result = a % b;
         break;
@@ -398,7 +396,6 @@ private boolean isResultDisplayed = false;
         result = a/b;
         break;
         }
-
 
         lb.setText(String.valueOf(result));
         oldvalue = String.valueOf(result); 
@@ -417,15 +414,14 @@ private boolean isResultDisplayed = false;
         oldvalue = newvalue = oper = "";
         }
         else if(e.getSource()==equal){
+        double result = 0;
+        try {
         newvalue = lb.getText();
-        float b = Float.parseFloat(newvalue);
-        float a = Float.parseFloat(oldvalue); 
-        float result = 0f;
+        double b = Double.parseDouble(newvalue);
+        double a = Double.parseDouble(oldvalue); 
         isResultDisplayed = true;
-
         
-        switch (oper){
-        
+        switch (oper){        
         case "%":
         result = a % b;
         break;
@@ -443,11 +439,29 @@ private boolean isResultDisplayed = false;
         break;
         
         case "/":
+        if (b==0) { 
+        if (a==0) {
+            lb.setText("Result: NaN");
+        } else {
+            lb.setText("Error: Div by 0");
+        }
+        oldvalue = ""; 
+        oper = "";
+        isResultDisplayed = true;
+        return;
+         }
         result = a/b;
         break;
         
         }
-        
+        } 
+        catch (NumberFormatException exception) 
+        {
+        lb.setText("Error: Invalid Number Format, try again"); 
+        oldvalue = newvalue = oper = "";
+        isResultDisplayed = true;
+        return;
+        }
         oper = "";
         lb.setText(String.valueOf(result));
         oldvalue=String.valueOf(result);
