@@ -13,7 +13,9 @@ A simple, fully functional calculator application developed using the Java Swing
 - Basic arithmetic operations: Addition, Subtraction, Multiplication, Division.
 - Modulo operation (%).
 - Clear functionality.
-- Floating-point support.
+- High-Precision Calculation.
+- Negative Number Support.
+- Error Handling.
 
 ## Technologies Used
 - Java
