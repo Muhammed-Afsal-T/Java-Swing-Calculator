@@ -169,106 +169,16 @@ private boolean isResultDisplayed = false;
         
         
         public void actionPerformed(ActionEvent e){
-       if(e.getSource()==bnseven){
-       String digit = "7";
+       if(e.getSource()==bnseven || e.getSource()==bneight || e.getSource()==bnnine || e.getSource()==four || e.getSource()==five || e.getSource()==six || e.getSource()==one || e.getSource()==two || e.getSource()==three || e.getSource()==dot  || e.getSource()==zero){
+       
+       String digit = e.getActionCommand();
 
         if (isResultDisplayed) {
         lb.setText("");
         isResultDisplayed = false; 
         }
         lb.setText(lb.getText()+ digit);
-        }
-        else if(e.getSource()==bneight){
-        String digit = "8";
-        
-        if (isResultDisplayed) {
-        lb.setText("");
-        isResultDisplayed = false; 
-        }
-        lb.setText(lb.getText()+ digit);
-        }
-        else if(e.getSource()==bnnine){
-        String digit = "9";
-        
-        if (isResultDisplayed) {
-        lb.setText("");
-        isResultDisplayed = false; 
-        }
-        lb.setText(lb.getText()+ digit);
-        }
-        else if(e.getSource()==four){
-        String digit = "4";
-        
-        if (isResultDisplayed) {
-        lb.setText("");
-        isResultDisplayed = false; 
-        }
-        lb.setText(lb.getText()+ digit);
-        }
-        else if(e.getSource()==five){
-        String digit = "5";
-        
-        if (isResultDisplayed) {
-        lb.setText("");
-        isResultDisplayed = false; 
-        }
-        lb.setText(lb.getText()+ digit);
-        }
-        else if(e.getSource()==six){
-        String digit = "6";
-        
-        if (isResultDisplayed) {
-        lb.setText("");
-        isResultDisplayed = false; 
-        }
-        lb.setText(lb.getText()+ digit);
-        }
-        else if(e.getSource()==one){
-        String digit = "1";
-
-        
-        if (isResultDisplayed) {
-        lb.setText("");
-        isResultDisplayed = false; 
-        }
-        lb.setText(lb.getText()+ digit);
-        }
-        else if(e.getSource()==two){
-        String digit = "2";
-        
-        if (isResultDisplayed) {
-        lb.setText("");
-        isResultDisplayed = false; 
-        }
-        lb.setText(lb.getText()+ digit);
-        }
-        else if(e.getSource()==three){
-        String digit = "3";
-        
-        if (isResultDisplayed) {
-        lb.setText("");
-        isResultDisplayed = false; 
-        }
-        lb.setText(lb.getText()+ digit);
-        }
-        else if(e.getSource()==dot){
-        String digit = ".";
-        
-        if (isResultDisplayed) {
-        lb.setText("");
-        isResultDisplayed = false; 
-        }
-        lb.setText(lb.getText()+ digit);
-        }
-        else if(e.getSource()==zero){
-        String digit = "0";
-        
-        if (isResultDisplayed) {
-        lb.setText("");
-        isResultDisplayed = false; 
-        }
-        lb.setText(lb.getText()+ digit);
-        }
+        } 
         else if(e.getSource()==mode){
         
         if (oldvalue != null && !oldvalue.isEmpty() && !lb.getText().isEmpty() && !oper.isEmpty()) {
